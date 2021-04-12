@@ -52,3 +52,17 @@ build/CMakeFiles/test_version.dir/flags.make
 build/CMakeFiles/test_version.dir/link.txt
 build/CMakeFiles/test_version.dir/progress.make
 build/Testing/Temporary/LastTest.log
+build/helloworld_cli
+build/libhelloworld.a
+build/test_version
+build/.cmake/api/v1/reply/cache-v2-fd33a41581033d345e5d.json
+build/.cmake/api/v1/reply/index-2021-04-12T18-56-36-0701.json
+build/CMakeFiles/helloworld.dir/CXX.includecache
+build/CMakeFiles/helloworld.dir/depend.internal
+build/CMakeFiles/helloworld.dir/lib.cpp.o
+build/CMakeFiles/helloworld_cli.dir/CXX.includecache
+build/CMakeFiles/helloworld_cli.dir/depend.internal
+build/CMakeFiles/helloworld_cli.dir/main.cpp.o
+build/CMakeFiles/test_version.dir/CXX.includecache
+build/CMakeFiles/test_version.dir/depend.internal
+build/CMakeFiles/test_version.dir/test_version.cpp.o
