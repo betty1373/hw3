@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.2)
 if (DEFINED ENV{GITHUB_RUN_NUMBER})
     project(helloworld VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
 else ()
-    project(helloworld VERSION 0.0.4)
+    project(helloworld VERSION 0.0.2)
 endif()
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
