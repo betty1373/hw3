@@ -15,13 +15,13 @@ namespace libSrc
         std::string::size_type stop = str.find_first_of(d);
         while(stop != std::string::npos)
         {
-            r.push_back(str.substr(start, stop - start));
+            r.emplace_back(str.substr(start, stop - start));
 
             start = stop + 1;
             stop = str.find_first_of(d, start);
         }
 
-        r.push_back(str.substr(start));
+        r.emplace_back(str.substr(start));
 
         return r;
     }
@@ -31,7 +31,7 @@ namespace libSrc
 
         for (auto &part :str_ip)
         {
-            r.push_back(std::stoi(part));
+            r.emplace_back(std::stoi(part));
         }
 
         return r;
