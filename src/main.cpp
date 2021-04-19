@@ -1,4 +1,4 @@
-#include "lib.h"
+#include "libSrc/lib.h"
 #include <iostream>
 // ("",  '.') -> [""]
 // ("11", '.') -> ["11"]
