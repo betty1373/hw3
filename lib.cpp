@@ -22,7 +22,6 @@ namespace libSrc
         }
 
         r.emplace_back(str.substr(start));
-
         return r;
     }
     ip_t strToInt(const ip_str_t &str_ip)
@@ -33,7 +32,6 @@ namespace libSrc
         {
             r.emplace_back(std::stoi(part));
         }
-
         return r;
     }
 
@@ -65,7 +63,7 @@ namespace libSrc
 
         for(auto& ip : ip_pool)
         {
-            if (ip[0]==part) r.push_back(ip);
+            if (ip[0]==part) r.emplace_back(ip);
         }
         return r;
     }
@@ -75,7 +73,7 @@ namespace libSrc
 
         for(auto& ip : ip_pool)
         {
-            if (ip[0]==part1 && ip[1]==part2) r.push_back(ip);
+            if (ip[0]==part1 && ip[1]==part2) r.emplace_back(ip);
         }
         return r;
     }
@@ -86,7 +84,7 @@ namespace libSrc
         {
             for(auto& ip_part : ip)
             {
-                if (ip_part == part) r.push_back(ip);
+                if (ip_part == part) r.emplace_back(ip);
             }
         }
         return r;
