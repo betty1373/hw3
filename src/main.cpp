@@ -1,12 +1,5 @@
 #include "lib.h"
-
 #include <iostream>
-#include <cassert>
-#include <cstdlib>
-#include <iostream>
-#include <string>
-#include <vector>
-
 // ("",  '.') -> [""]
 // ("11", '.') -> ["11"]
 // ("..", '.') -> ["", "", ""]
@@ -14,11 +7,8 @@
 // (".11", '.') -> ["", "11"]
 // ("11.22", '.') -> ["11", "22"]
 
-
 int main(int argc, char const *argv[])
-{
-    
-  //  
+{     
     //std::cout << "Hello, World!" << std::endl;
     try
     {
@@ -28,9 +18,8 @@ int main(int argc, char const *argv[])
         for(std::string line; std::getline(std::cin, line);)
         {
             ip_str_t v = split(line, '\t');
-            ip_pool.push_back(strToInt(split(v.at(0), '.')));
-        }
-       
+            ip_pool.emplace_back(strToInt(split(v.at(0), '.')));
+        }       
         // TODO reverse lexicographically sort
         sort(ip_pool);
         print(ip_pool);
