@@ -10,7 +10,7 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
 add_executable(ipfilter ${PROJECT_SOURCE_DIR}/src/main.cpp)
-add_library(ipfilter_lib ${PROJECT_SOURCE_DIR}/lib.cpp)
+add_library(ipfilter_lib ${PROJECT_SOURCE_DIR}/libSrc/lib.cpp)
 add_executable(test_version ${PROJECT_SOURCE_DIR}/test_version.cpp)
 
 set_target_properties(ipfilter ipfilter_lib test_version PROPERTIES
