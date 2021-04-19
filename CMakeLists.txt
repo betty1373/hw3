@@ -9,7 +9,7 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
-add_executable(ipfilter main.cpp)
+add_executable(ipfilter  ${PROJECT_SOURCE_DIR}/src/main.cpp)
 add_library(ipfilter_lib lib.cpp)
 add_executable(test_version test_version.cpp)
 
@@ -54,8 +54,6 @@ else ()
         -Wall -Wextra -pedantic
     )
 endif()
-
-
 
 install(TARGETS ipfilter RUNTIME DESTINATION bin)
 
