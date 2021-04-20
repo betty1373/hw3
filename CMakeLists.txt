@@ -23,11 +23,17 @@ target_include_directories(ipfilter
 set_target_properties(test_version PROPERTIES
     COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
     INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
+    INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/libSrc
 )
 
 target_link_libraries(ipfilter PRIVATE
     ipfilter_lib
 )
+
+target_include_directories(ipfilter PUBLIC
+    ${PROJECT_SOURCE_DIR}/libSrc
+)
+
 target_link_libraries(test_version
     ${Boost_LIBRARIES}
     ipfilter_lib
