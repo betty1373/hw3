@@ -4,7 +4,7 @@
 
 #define USE_PRETTY 1
 
-template<typename T>
+template<typename T,size_t lot>
 struct logging_allocator {
     using value_type = T;
 
@@ -15,7 +15,7 @@ struct logging_allocator {
 
     template<typename U>
     struct rebind {
-        using other = logging_allocator<U>;
+        using other = logging_allocator<U,lot>;
     };
 
     logging_allocator() = default;
@@ -32,10 +32,19 @@ struct logging_allocator {
 #else
         std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
 #endif
-        auto p = std::malloc(n * sizeof(T));
-        if (!p)
+        if (bufCnt+n > lot){
             throw std::bad_alloc();
-        return reinterpret_cast<T *>(p);
+        }
+        if (!bufPtr){
+            bufPtr = reinterpret_cast<pointer>(std::malloc(n+sizeof(T)));
+        }
+        
+        if (!bufPtr){
+            throw std::bad_alloc();
+        }
+        pointer pp = bufPtr+bufCnt;
+        bufCnt += n;
+        return pp;
     }
 
     void deallocate(T *p, std::size_t n) {
@@ -44,7 +53,10 @@ struct logging_allocator {
 #else
         std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
 #endif
-        std::free(p);
+        if (!p) return;
+        if ((bufCnt-=n)!=0) return;
+        std::free(bufPtr);
+        bufPtr = nullptr;
     }
 
     template<typename U, typename ...Args>
@@ -65,6 +77,9 @@ struct logging_allocator {
 #endif
         p->~T();
     }
+    private:
+        pointer bufPtr = nullptr;
+        size_t bufCnt = 0;  
 };
 
 int main(int, char *[]) {
