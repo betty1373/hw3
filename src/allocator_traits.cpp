@@ -5,7 +5,6 @@
 template <typename T>
 struct MyAllocator {
 	using value_type = T;
-
 	MyAllocator();
 
 	template <typename U>

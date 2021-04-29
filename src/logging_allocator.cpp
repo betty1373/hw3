@@ -1,7 +1,3 @@
-#ifndef __PRETTY_FUNCTION__
-#include "pretty.h"
-#endif
-
 #include <iostream>
 #include <vector>
 #include <map>

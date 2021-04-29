@@ -9,6 +9,16 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
+add_executable(logging_allocator ${PROJECT_SOURCE_DIR}/src/logging_allocator.cpp)
+set_target_properties(logging_allocator PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON)
+
+add_executable(allocator_traits ${PROJECT_SOURCE_DIR}/src/allocator_traits.cpp)
+set_target_properties(allocator_traits PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON)
+
+add_executable(polymorphism ${PROJECT_SOURCE_DIR}/src/polymorphism.cpp)
+set_target_properties(polymorphism PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
+
+
 add_executable(ipfilter ${PROJECT_SOURCE_DIR}/src/main.cpp)
 add_library(ipfilter_lib ${PROJECT_SOURCE_DIR}/libSrc/lib.cpp)
 add_executable(test_version ${PROJECT_SOURCE_DIR}/test_version.cpp)
