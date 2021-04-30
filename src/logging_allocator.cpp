@@ -1,6 +1,9 @@
+#include <algorithm>
 #include <iostream>
-#include <vector>
+#include <iterator>
 #include <map>
+#include <string>
+#include <vector>
 
 #define USE_PRETTY 1
 
@@ -21,10 +24,10 @@ struct logging_allocator {
     logging_allocator() = default;
     ~logging_allocator() = default;
 
-    template<typename U> 
-    logging_allocator(const logging_allocator<U>&) {
+    // template<typename U,size_t num> 
+    // logging_allocator(const logging_allocator<U>&,) {
 
-    }
+    // }
 
     T *allocate(std::size_t n) {
 #ifndef USE_PRETTY
@@ -81,33 +84,33 @@ struct logging_allocator {
         pointer bufPtr = nullptr;
         size_t bufCnt = 0;  
 };
+template<typename Container>
+void printContainter(const Container& values) {
+    for (auto v : values)
+        std::cout << v << ' ';
+    std::cout << std::endl;
+};
+std::ostream& operator<<(std::ostream& os, const std::pair<const int, int>& pair) {
+    os << pair.first << " " << pair.second << '\n';
+    return os;
+};
+int fact(int V) {
+    return (V==0 || V==1) ? 1 :fact(V-1) * V;
+};
 
 int main(int, char *[]) {
-    auto v = std::vector<int, logging_allocator<int>>{};
-    // v.reserve(5);
-    for (int i = 0; i < 6; ++i) {
-        std::cout << "vector size = " << v.size() << std::endl;
-        v.emplace_back(i);
-        std::cout << std::endl;
+    const int num_els = 12;
+    auto std_map = std::map<int,int,std::less<int>,std::allocator<std::pair<const int,int>>>{};  
+
+    for (auto i=0;i<num_els;++i) {
+        std_map.emplace(std::pair<int,int>(i,fact(i)));
     }
 
-    // std::cout << "\n\n\n\nAfter creation\n\n\n\n" << std::endl;
-    // auto v2 = v;
+    auto cust_map = std::map<int,int,std::less<int>,logging_allocator<std::pair<const int,int>,num_els>>{};  
 
-    auto m = std::map<
-        int,
-        float,
-        std::less<int>,
-        logging_allocator<
-            std::pair<
-                const int, float
-            >
-        >
-    >{};
-
-    for (int i = 0; i < 1; ++i) {
-        m[i] = static_cast<float>(i);
+    for (auto i=0;i<num_els;++i) {
+        cust_map.emplace(std::pair<int,int>(i,fact(i)));
     }
-
+    printContainter(cust_map);
     return 0;
 }

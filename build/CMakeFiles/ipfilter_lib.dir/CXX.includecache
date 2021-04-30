@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/btv/hw3/libSrc/lib.cpp
+../version.h
+/home/btv/hw3/version.h
+lib.h
+/home/btv/hw3/libSrc/lib.h
+
+/home/btv/hw3/libSrc/lib.h
+iostream
+-
+cassert
+-
+cstdlib
+-
+string
+-
+vector
+-
+algorithm
+-
+
+/home/btv/hw3/version.h
+

@@ -1,0 +1,1 @@
+/usr/bin/g++-9  -g  -rdynamic CMakeFiles/allocator_traits.dir/src/allocator_traits.cpp.o  -o allocator_traits 
