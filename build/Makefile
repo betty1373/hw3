@@ -68,38 +68,27 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-# Special rule for the target package
-package: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
-	/usr/bin/cpack --config ./CPackConfig.cmake
-.PHONY : package
+.PHONY : edit_cache/fast
 
-# Special rule for the target package
-package/fast: package
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-.PHONY : package/fast
+# Special rule for the target test
+test/fast: test
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+.PHONY : test/fast
 
 # Special rule for the target install
 install: preinstall
@@ -113,27 +102,15 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target package_source
-package_source:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
-	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/btv/hw3/build/CPackSourceConfig.cmake
-.PHONY : package_source
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target package_source
-package_source/fast: package_source
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : package_source/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -146,16 +123,39 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
+	/usr/bin/cpack --config ./CPackConfig.cmake
+.PHONY : package
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target package
+package/fast: package
 
-.PHONY : edit_cache/fast
+.PHONY : package/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
+	/usr/bin/cpack --config ./CPackSourceConfig.cmake /home/btv/hw3/build/CPackSourceConfig.cmake
+.PHONY : package_source
+
+# Special rule for the target package_source
+package_source/fast: package_source
+
+.PHONY : package_source/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -190,71 +190,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named logging_allocator
-
-# Build rule for target.
-logging_allocator: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 logging_allocator
-.PHONY : logging_allocator
-
-# fast build rule for target.
-logging_allocator/fast:
-	$(MAKE) -f CMakeFiles/logging_allocator.dir/build.make CMakeFiles/logging_allocator.dir/build
-.PHONY : logging_allocator/fast
-
-#=============================================================================
-# Target rules for targets named ipfilter
-
-# Build rule for target.
-ipfilter: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ipfilter
-.PHONY : ipfilter
-
-# fast build rule for target.
-ipfilter/fast:
-	$(MAKE) -f CMakeFiles/ipfilter.dir/build.make CMakeFiles/ipfilter.dir/build
-.PHONY : ipfilter/fast
-
-#=============================================================================
-# Target rules for targets named allocator_traits
-
-# Build rule for target.
-allocator_traits: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 allocator_traits
-.PHONY : allocator_traits
-
-# fast build rule for target.
-allocator_traits/fast:
-	$(MAKE) -f CMakeFiles/allocator_traits.dir/build.make CMakeFiles/allocator_traits.dir/build
-.PHONY : allocator_traits/fast
-
-#=============================================================================
-# Target rules for targets named polymorphism
-
-# Build rule for target.
-polymorphism: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 polymorphism
-.PHONY : polymorphism
-
-# fast build rule for target.
-polymorphism/fast:
-	$(MAKE) -f CMakeFiles/polymorphism.dir/build.make CMakeFiles/polymorphism.dir/build
-.PHONY : polymorphism/fast
-
-#=============================================================================
-# Target rules for targets named ipfilter_lib
-
-# Build rule for target.
-ipfilter_lib: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ipfilter_lib
-.PHONY : ipfilter_lib
-
-# fast build rule for target.
-ipfilter_lib/fast:
-	$(MAKE) -f CMakeFiles/ipfilter_lib.dir/build.make CMakeFiles/ipfilter_lib.dir/build
-.PHONY : ipfilter_lib/fast
-
-#=============================================================================
 # Target rules for targets named test_version
 
 # Build rule for target.
@@ -267,13 +202,39 @@ test_version/fast:
 	$(MAKE) -f CMakeFiles/test_version.dir/build.make CMakeFiles/test_version.dir/build
 .PHONY : test_version/fast
 
+#=============================================================================
+# Target rules for targets named allocator_lib
+
+# Build rule for target.
+allocator_lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allocator_lib
+.PHONY : allocator_lib
+
+# fast build rule for target.
+allocator_lib/fast:
+	$(MAKE) -f CMakeFiles/allocator_lib.dir/build.make CMakeFiles/allocator_lib.dir/build
+.PHONY : allocator_lib/fast
+
+#=============================================================================
+# Target rules for targets named allocator
+
+# Build rule for target.
+allocator: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 allocator
+.PHONY : allocator
+
+# fast build rule for target.
+allocator/fast:
+	$(MAKE) -f CMakeFiles/allocator.dir/build.make CMakeFiles/allocator.dir/build
+.PHONY : allocator/fast
+
 libSrc/lib.o: libSrc/lib.cpp.o
 
 .PHONY : libSrc/lib.o
 
 # target to build an object file
 libSrc/lib.cpp.o:
-	$(MAKE) -f CMakeFiles/ipfilter_lib.dir/build.make CMakeFiles/ipfilter_lib.dir/libSrc/lib.cpp.o
+	$(MAKE) -f CMakeFiles/allocator_lib.dir/build.make CMakeFiles/allocator_lib.dir/libSrc/lib.cpp.o
 .PHONY : libSrc/lib.cpp.o
 
 libSrc/lib.i: libSrc/lib.cpp.i
@@ -282,7 +243,7 @@ libSrc/lib.i: libSrc/lib.cpp.i
 
 # target to preprocess a source file
 libSrc/lib.cpp.i:
-	$(MAKE) -f CMakeFiles/ipfilter_lib.dir/build.make CMakeFiles/ipfilter_lib.dir/libSrc/lib.cpp.i
+	$(MAKE) -f CMakeFiles/allocator_lib.dir/build.make CMakeFiles/allocator_lib.dir/libSrc/lib.cpp.i
 .PHONY : libSrc/lib.cpp.i
 
 libSrc/lib.s: libSrc/lib.cpp.s
@@ -291,62 +252,8 @@ libSrc/lib.s: libSrc/lib.cpp.s
 
 # target to generate assembly for a file
 libSrc/lib.cpp.s:
-	$(MAKE) -f CMakeFiles/ipfilter_lib.dir/build.make CMakeFiles/ipfilter_lib.dir/libSrc/lib.cpp.s
+	$(MAKE) -f CMakeFiles/allocator_lib.dir/build.make CMakeFiles/allocator_lib.dir/libSrc/lib.cpp.s
 .PHONY : libSrc/lib.cpp.s
-
-src/allocator_traits.o: src/allocator_traits.cpp.o
-
-.PHONY : src/allocator_traits.o
-
-# target to build an object file
-src/allocator_traits.cpp.o:
-	$(MAKE) -f CMakeFiles/allocator_traits.dir/build.make CMakeFiles/allocator_traits.dir/src/allocator_traits.cpp.o
-.PHONY : src/allocator_traits.cpp.o
-
-src/allocator_traits.i: src/allocator_traits.cpp.i
-
-.PHONY : src/allocator_traits.i
-
-# target to preprocess a source file
-src/allocator_traits.cpp.i:
-	$(MAKE) -f CMakeFiles/allocator_traits.dir/build.make CMakeFiles/allocator_traits.dir/src/allocator_traits.cpp.i
-.PHONY : src/allocator_traits.cpp.i
-
-src/allocator_traits.s: src/allocator_traits.cpp.s
-
-.PHONY : src/allocator_traits.s
-
-# target to generate assembly for a file
-src/allocator_traits.cpp.s:
-	$(MAKE) -f CMakeFiles/allocator_traits.dir/build.make CMakeFiles/allocator_traits.dir/src/allocator_traits.cpp.s
-.PHONY : src/allocator_traits.cpp.s
-
-src/logging_allocator.o: src/logging_allocator.cpp.o
-
-.PHONY : src/logging_allocator.o
-
-# target to build an object file
-src/logging_allocator.cpp.o:
-	$(MAKE) -f CMakeFiles/logging_allocator.dir/build.make CMakeFiles/logging_allocator.dir/src/logging_allocator.cpp.o
-.PHONY : src/logging_allocator.cpp.o
-
-src/logging_allocator.i: src/logging_allocator.cpp.i
-
-.PHONY : src/logging_allocator.i
-
-# target to preprocess a source file
-src/logging_allocator.cpp.i:
-	$(MAKE) -f CMakeFiles/logging_allocator.dir/build.make CMakeFiles/logging_allocator.dir/src/logging_allocator.cpp.i
-.PHONY : src/logging_allocator.cpp.i
-
-src/logging_allocator.s: src/logging_allocator.cpp.s
-
-.PHONY : src/logging_allocator.s
-
-# target to generate assembly for a file
-src/logging_allocator.cpp.s:
-	$(MAKE) -f CMakeFiles/logging_allocator.dir/build.make CMakeFiles/logging_allocator.dir/src/logging_allocator.cpp.s
-.PHONY : src/logging_allocator.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -354,7 +261,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/ipfilter.dir/build.make CMakeFiles/ipfilter.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/allocator.dir/build.make CMakeFiles/allocator.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -363,7 +270,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/ipfilter.dir/build.make CMakeFiles/ipfilter.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/allocator.dir/build.make CMakeFiles/allocator.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -372,35 +279,8 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/ipfilter.dir/build.make CMakeFiles/ipfilter.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/allocator.dir/build.make CMakeFiles/allocator.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/polymorphism.o: src/polymorphism.cpp.o
-
-.PHONY : src/polymorphism.o
-
-# target to build an object file
-src/polymorphism.cpp.o:
-	$(MAKE) -f CMakeFiles/polymorphism.dir/build.make CMakeFiles/polymorphism.dir/src/polymorphism.cpp.o
-.PHONY : src/polymorphism.cpp.o
-
-src/polymorphism.i: src/polymorphism.cpp.i
-
-.PHONY : src/polymorphism.i
-
-# target to preprocess a source file
-src/polymorphism.cpp.i:
-	$(MAKE) -f CMakeFiles/polymorphism.dir/build.make CMakeFiles/polymorphism.dir/src/polymorphism.cpp.i
-.PHONY : src/polymorphism.cpp.i
-
-src/polymorphism.s: src/polymorphism.cpp.s
-
-.PHONY : src/polymorphism.s
-
-# target to generate assembly for a file
-src/polymorphism.cpp.s:
-	$(MAKE) -f CMakeFiles/polymorphism.dir/build.make CMakeFiles/polymorphism.dir/src/polymorphism.cpp.s
-.PHONY : src/polymorphism.cpp.s
 
 test_version.o: test_version.cpp.o
 
@@ -436,35 +316,23 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... install/local"
-	@echo "... logging_allocator"
-	@echo "... ipfilter"
-	@echo "... allocator_traits"
-	@echo "... polymorphism"
-	@echo "... ipfilter_lib"
-	@echo "... package"
-	@echo "... list_install_components"
-	@echo "... test_version"
-	@echo "... install"
-	@echo "... package_source"
-	@echo "... test"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... install"
+	@echo "... list_install_components"
+	@echo "... rebuild_cache"
+	@echo "... package"
+	@echo "... test_version"
+	@echo "... install/local"
+	@echo "... allocator_lib"
+	@echo "... package_source"
+	@echo "... allocator"
 	@echo "... libSrc/lib.o"
 	@echo "... libSrc/lib.i"
 	@echo "... libSrc/lib.s"
-	@echo "... src/allocator_traits.o"
-	@echo "... src/allocator_traits.i"
-	@echo "... src/allocator_traits.s"
-	@echo "... src/logging_allocator.o"
-	@echo "... src/logging_allocator.i"
-	@echo "... src/logging_allocator.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/polymorphism.o"
-	@echo "... src/polymorphism.i"
-	@echo "... src/polymorphism.s"
 	@echo "... test_version.o"
 	@echo "... test_version.i"
 	@echo "... test_version.s"

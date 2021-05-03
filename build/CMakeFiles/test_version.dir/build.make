@@ -80,7 +80,7 @@ test_version_EXTERNAL_OBJECTS =
 test_version: CMakeFiles/test_version.dir/test_version.cpp.o
 test_version: CMakeFiles/test_version.dir/build.make
 test_version: /usr/lib/x86_64-linux-gnu/libboost_unit_test_framework.so.1.71.0
-test_version: libipfilter_lib.a
+test_version: liballocator_lib.a
 test_version: CMakeFiles/test_version.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/btv/hw3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_version"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_version.dir/link.txt --verbose=$(VERBOSE)

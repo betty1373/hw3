@@ -1,32 +1,17 @@
 [
 {
   "directory": "/home/btv/hw3/build",
-  "command": "/usr/bin/g++-9    -g   -std=gnu++17 -o CMakeFiles/logging_allocator.dir/src/logging_allocator.cpp.o -c /home/btv/hw3/src/logging_allocator.cpp",
-  "file": "/home/btv/hw3/src/logging_allocator.cpp"
+  "command": "/usr/bin/g++-9  -DBOOST_ALL_NO_LIB -DBOOST_TEST_DYN_LINK -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/home/btv/hw3/libSrc  -O3 -DNDEBUG   -Wall -Wextra -pedantic -std=gnu++14 -o CMakeFiles/test_version.dir/test_version.cpp.o -c /home/btv/hw3/test_version.cpp",
+  "file": "/home/btv/hw3/test_version.cpp"
 },
 {
   "directory": "/home/btv/hw3/build",
-  "command": "/usr/bin/g++-9   -I/home/btv/hw3/build -I/home/btv/hw3/libSrc  -g   -Wall -Wextra -pedantic -std=gnu++14 -o CMakeFiles/ipfilter.dir/src/main.cpp.o -c /home/btv/hw3/src/main.cpp",
-  "file": "/home/btv/hw3/src/main.cpp"
-},
-{
-  "directory": "/home/btv/hw3/build",
-  "command": "/usr/bin/g++-9    -g   -std=gnu++14 -o CMakeFiles/allocator_traits.dir/src/allocator_traits.cpp.o -c /home/btv/hw3/src/allocator_traits.cpp",
-  "file": "/home/btv/hw3/src/allocator_traits.cpp"
-},
-{
-  "directory": "/home/btv/hw3/build",
-  "command": "/usr/bin/g++-9    -g   -std=gnu++17 -o CMakeFiles/polymorphism.dir/src/polymorphism.cpp.o -c /home/btv/hw3/src/polymorphism.cpp",
-  "file": "/home/btv/hw3/src/polymorphism.cpp"
-},
-{
-  "directory": "/home/btv/hw3/build",
-  "command": "/usr/bin/g++-9    -g   -Wall -Wextra -pedantic -std=gnu++14 -o CMakeFiles/ipfilter_lib.dir/libSrc/lib.cpp.o -c /home/btv/hw3/libSrc/lib.cpp",
+  "command": "/usr/bin/g++-9    -O3 -DNDEBUG   -Wall -Wextra -pedantic -std=gnu++14 -o CMakeFiles/allocator_lib.dir/libSrc/lib.cpp.o -c /home/btv/hw3/libSrc/lib.cpp",
   "file": "/home/btv/hw3/libSrc/lib.cpp"
 },
 {
   "directory": "/home/btv/hw3/build",
-  "command": "/usr/bin/g++-9  -DBOOST_ALL_NO_LIB -DBOOST_TEST_DYN_LINK -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK -I/home/btv/hw3/libSrc  -g   -Wall -Wextra -pedantic -std=gnu++14 -o CMakeFiles/test_version.dir/test_version.cpp.o -c /home/btv/hw3/test_version.cpp",
-  "file": "/home/btv/hw3/test_version.cpp"
+  "command": "/usr/bin/g++-9   -I/home/btv/hw3/build -I/home/btv/hw3/libSrc  -O3 -DNDEBUG   -Wall -Wextra -pedantic -std=gnu++14 -o CMakeFiles/allocator.dir/src/main.cpp.o -c /home/btv/hw3/src/main.cpp",
+  "file": "/home/btv/hw3/src/main.cpp"
 }
 ]

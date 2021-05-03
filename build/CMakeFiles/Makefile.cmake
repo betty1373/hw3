@@ -64,10 +64,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/logging_allocator.dir/DependInfo.cmake"
-  "CMakeFiles/ipfilter.dir/DependInfo.cmake"
-  "CMakeFiles/allocator_traits.dir/DependInfo.cmake"
-  "CMakeFiles/polymorphism.dir/DependInfo.cmake"
-  "CMakeFiles/ipfilter_lib.dir/DependInfo.cmake"
   "CMakeFiles/test_version.dir/DependInfo.cmake"
+  "CMakeFiles/allocator_lib.dir/DependInfo.cmake"
+  "CMakeFiles/allocator.dir/DependInfo.cmake"
   )

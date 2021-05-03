@@ -3,31 +3,21 @@ cmake_minimum_required(VERSION 3.2)
 if (NOT DEFINED ENV{GITHUB_RUN_NUMBER})
     set(ENV{GITHUB_RUN_NUMBER} 1)
 endif()
-project(ipfilter VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
+project(allocator VERSION 0.0.$ENV{GITHUB_RUN_NUMBER})
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 configure_file(version.h.in ${PROJECT_SOURCE_DIR}/version.h)
 
-add_executable(logging_allocator ${PROJECT_SOURCE_DIR}/src/logging_allocator.cpp)
-set_target_properties(logging_allocator PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
-
-add_executable(allocator_traits ${PROJECT_SOURCE_DIR}/src/allocator_traits.cpp)
-set_target_properties(allocator_traits PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED ON)
-
-add_executable(polymorphism ${PROJECT_SOURCE_DIR}/src/polymorphism.cpp)
-set_target_properties(polymorphism PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
-
-
-add_executable(ipfilter ${PROJECT_SOURCE_DIR}/src/main.cpp)
-add_library(ipfilter_lib ${PROJECT_SOURCE_DIR}/libSrc/lib.cpp)
+add_executable(allocator ${PROJECT_SOURCE_DIR}/src/main.cpp)
+add_library(allocator_lib ${PROJECT_SOURCE_DIR}/libSrc/lib.cpp)
 add_executable(test_version ${PROJECT_SOURCE_DIR}/test_version.cpp)
 
-set_target_properties(ipfilter ipfilter_lib test_version PROPERTIES
+set_target_properties(allocator allocator_lib test_version PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
 )
-target_include_directories(ipfilter
+target_include_directories(allocator
     PRIVATE "${CMAKE_BINARY_DIR}"
 )
 set_target_properties(test_version PROPERTIES
@@ -36,34 +26,34 @@ set_target_properties(test_version PROPERTIES
     INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/libSrc
 )
 
-target_link_libraries(ipfilter PRIVATE
-    ipfilter_lib
+target_link_libraries(allocator PRIVATE
+    allocator_lib
 )
 
-target_include_directories(ipfilter PUBLIC
+target_include_directories(allocator PUBLIC
     ${PROJECT_SOURCE_DIR}/libSrc
 )
 
 target_link_libraries(test_version
     ${Boost_LIBRARIES}
-    ipfilter_lib
+    allocator_lib
 )
 
 if (MSVC)
-    target_compile_option(ipfilter PRIVATE
+    target_compile_option(allocator PRIVATE
         /W4
     )
-    target_compile_options(ipfilter_lib PRIVATE
+    target_compile_options(alloacator_lib PRIVATE
         /W4
     )
     target_compile_options(test_version PRIVATE
         /W4
     )
 else ()
-    target_compile_options(ipfilter PRIVATE
+    target_compile_options(allocator PRIVATE
         -Wall -Wextra -pedantic 
     )
-    target_compile_options(ipfilter_lib PRIVATE
+    target_compile_options(allocator_lib PRIVATE
         -Wall -Wextra -pedantic
     )
     target_compile_options(test_version PRIVATE
@@ -71,7 +61,7 @@ else ()
     )
 endif()
 
-install(TARGETS ipfilter RUNTIME DESTINATION bin)
+install(TARGETS allocator RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
@@ -84,4 +74,4 @@ include(CPack)
 
 enable_testing()
 
-add_test(ipfilter_tests test_version)
+add_test(allocator_tests test_version)

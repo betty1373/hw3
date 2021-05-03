@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++-9
 CXX_FLAGS = -O3 -DNDEBUG   -Wall -Wextra -pedantic -std=gnu++14
 
-CXX_DEFINES = -DBOOST_ALL_NO_LIB -DBOOST_TEST_DYN_LINK -DBOOST_UNIT_TEST_FRAMEWORK_DYN_LINK
+CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/btv/hw3/libSrc 
+CXX_INCLUDES = 
 

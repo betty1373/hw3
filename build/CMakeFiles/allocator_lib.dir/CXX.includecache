@@ -6,7 +6,13 @@
 
 #IncludeRegexTransform: 
 
-../libSrc/lib.h
+/home/btv/hw3/libSrc/lib.cpp
+../version.h
+/home/btv/hw3/version.h
+lib.h
+/home/btv/hw3/libSrc/lib.h
+
+/home/btv/hw3/libSrc/lib.h
 iostream
 -
 map
@@ -14,9 +20,5 @@ map
 memory
 -
 
-/home/btv/hw3/test_version.cpp
-lib.h
-/home/btv/hw3/lib.h
-boost/test/unit_test.hpp
--
+/home/btv/hw3/version.h
 
