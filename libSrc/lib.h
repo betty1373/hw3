@@ -51,7 +51,7 @@ namespace libSrc
             return;
             }
             
-            std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl
+            std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
         }
 
         template<typename U, typename ...Args>
