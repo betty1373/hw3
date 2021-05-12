@@ -50,9 +50,8 @@ namespace libSrc
             if (bufCnt != 0) {
             return;
             }
-            free(bufPtr);
-            std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
-            bufPtr = nullptr;
+            
+            std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl
         }
 
         template<typename U, typename ...Args>
@@ -63,6 +62,8 @@ namespace libSrc
 
         void destroy(pointer p) {
             std::cout << __PRETTY_FUNCTION__ << std::endl;
+            free(bufPtr);
+            bufPtr = nullptr;
             p->~T();
         }
 
