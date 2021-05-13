@@ -23,7 +23,12 @@ namespace libSrc
         };
 
         logging_allocator() = default;
-        ~logging_allocator()=default;
+        ~logging_allocator() noexcept {
+            std::cout << __PRETTY_FUNCTION__ <<" free memory "<<bufCnt <<std::endl;
+              
+            free(bufPtr);
+            bufPtr = nullptr;
+        };
 
         pointer allocate(std::size_t n) {    
             if (bufCnt + n > lot) {
@@ -49,8 +54,7 @@ namespace libSrc
             bufCnt -= n;
             if (bufCnt != 0) {
             return;
-            }
-            
+            }            
             std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
         }
 
@@ -61,10 +65,8 @@ namespace libSrc
         }
 
         void destroy(pointer p) {
-            std::cout << __PRETTY_FUNCTION__ << std::endl;
-            free(bufPtr);
-            bufPtr = nullptr;
-            p->~T();
+            std::cout << __PRETTY_FUNCTION__ << std::endl;            
+            p->~T();           
         }
 
         private:
